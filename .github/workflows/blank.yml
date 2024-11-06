@@ -7,16 +7,16 @@ jobs:
   deploy:
     steps:
       - name: Deploy to EC2
-            env:
-              PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-              EC2_IP: ${{ secrets.EC2_IP }}
-              EC2_USER: ${{ secrets.EC2_USER }}
-            run: |
-              echo "$PRIVATE_KEY" > private_key.pem
-              chmod 400 private_key.pem
-              
-              # SSH into EC2 instance and deploy Flask app
-              ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_IP << 'EOF'
-              mkdir -p /app/fast-api-ci/
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          EC2_IP: ${{ secrets.EC2_IP }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key.pem
+          chmod 400 private_key.pem
+          
+          # SSH into EC2 instance and deploy Flask app
+          ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_IP << 'EOF'
+          mkdir -p /app/fast-api-ci/
 
-              EOF
+          EOF
