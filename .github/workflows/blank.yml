@@ -25,5 +25,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_IP << 'EOF'
           git clone https://github.com/satyamtechstax/fastapi-cicd.git app
           cd app
+          pip install -r requirements.txt
           sh ./install.sh
           EOF
