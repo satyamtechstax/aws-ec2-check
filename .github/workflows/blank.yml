@@ -26,6 +26,5 @@ jobs:
           sudo yum install git python pip -y
           git clone https://github.com/satyamtechstax/fastapi-cicd.git app
           cd app
-          pip install -r requirements.txt
-          sh install.sh
+          sudo sh install.sh
           EOF
