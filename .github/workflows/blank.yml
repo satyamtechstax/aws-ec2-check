@@ -1,10 +1,16 @@
+# This is a basic workflow to help you get started with Actions
+
 name: CI
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to EC2
         env:
@@ -17,6 +23,6 @@ jobs:
           
           # SSH into EC2 instance and deploy Flask app
           ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_IP << 'EOF'
-          mkdir -p /app/fast-api-ci/
 
+            mkdir -p 
           EOF
