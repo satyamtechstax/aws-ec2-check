@@ -23,6 +23,7 @@ jobs:
           
           # SSH into EC2 instance and deploy Flask app
           ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_IP << 'EOF'
-
-          sudo mkdir -p /app/fast-api/
+          git clone https://github.com/satyamtechstax/fastapi-cicd.git app
+          cd app
+          sh ./install.sh
           EOF
