@@ -12,20 +12,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v3
       - name: Deploy to EC2
-        env:
-          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-          EC2_IP: ${{ secrets.EC2_IP }}
-          EC2_USER: ${{ secrets.EC2_USER }}
-        run: |
-          echo "$PRIVATE_KEY" > private_key.pem
-          chmod 400 private_key.pem
-          
-          # SSH into EC2 instance and deploy Flask app
-          ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_IP << 'EOF'
-          sudo yum install git python pip -y
-          sudo rm -rf app 
-          git clone https://github.com/satyamtechstax/fastapi-cicd.git app
-          cd app
-          sudo sh install.sh
-          EOF
+        run: ls /
+      - name: check pwd
+        run: pwd
+    
